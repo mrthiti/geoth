@@ -104,7 +104,10 @@ const getSubdistrictById = (id: number) => {
 
 const res = (data: any) => {
   return new Response(JSON.stringify(data), {
-    headers: { "content-type": "application/json; charset=utf-8" },
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "X-Content-Type-Options": "nosniff",
+    },
   });
 };
 
