@@ -1,46 +1,101 @@
-# Astro Starter Kit: Basics
+# GeoTH 🇹🇭 (API ข้อมูล จังหวัด, อําเภอ, ตำบล และรหัสไปรษณีย์)
 
-```sh
-npm create astro@latest -- --template basics
-```
+Static API ข้อมูล **จังหวัด, อําเภอ, ตำบล และรหัสไปรษณีย์** ทั้งหมดของประเทศไทย เราทําออกมาเป็นแบบ static และ host บน Cloudflare ทําให้ response เร็วมาก รองรับ Concurrent สูงๆ ได้เป็นอย่างดี
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Demo
 
-## 🚀 Project Structure
+ลองเข้าไปดู Demo กันก่อนได้ที่นี่ครับ [https://geoth.pages.dev/demo](https://geoth.pages.dev/demo/)
 
-Inside of your Astro project, you'll see the following folders and files:
+### Quick Start
+
+สําหรับวิธีการใช้งาน GeoTH API ไม่ยากครับ เราจะใช้เฉพาะ **Method GET** เท่านั้น โดยจะแยกเป็น Route ต่างๆดังนี้
+
+**ดึงข้อมูล จังหวัดทั้งหมด**
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+https://geoth.pages.dev/api/provinces/all
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+**ดึงข้อมูล จังหวัดพร้อมอําเภอในจังหวัดนั้นๆ**
 
-## 🧞 Commands
+```text
+https://geoth.pages.dev/api/provinces-with-districts/all
+```
 
-All commands are run from the root of the project, from a terminal:
+**ดึงข้อมูล จังหวัดโดยระบุรหัสจังหวัด**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```text
+https://geoth.pages.dev/api/provinces/[รหัสจังหวัด]
+```
 
-## 👀 Want to learn more?
+**ดึงข้อมูล จังหวัดพร้อมอําเภอในจังหวัดนั้นๆ โดยระบุรหัสจังหวัด**
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```text
+https://geoth.pages.dev/api/provinces-with-districts/[รหัสจังหวัด]
+```
+
+**ดึงข้อมูล อำเภอทั้งหมด**
+
+```text
+https://geoth.pages.dev/api/districts/all
+```
+
+**ดึงข้อมูล อำเภอพร้อมรายชื่อตําบลในอำเภอนั้นๆ**
+
+```text
+https://geoth.pages.dev/api/districts-with-subdistricts/all
+```
+
+**ดึงข้อมูล อำเภอ โดยระบุรหัสอำเภอ**
+
+```text
+https://geoth.pages.dev/api/districts/[รหัสอำเภอ]
+```
+
+**ดึงข้อมูล อำเภอพร้อมรายชื่อตําบลในอำเภอนั้นๆ โดยระบุรหัสอำเภอ**
+
+```text
+https://geoth.pages.dev/api/districts-with-subdistricts/[รหัสอำเภอ]
+```
+
+**ดึงข้อมูล ตําบลทั้งหมด**
+
+```text
+https://geoth.pages.dev/api/subdistricts/all
+```
+
+**ดึงข้อมูล ตําบล โดยระบุรหัสตําบล**
+
+```text
+https://geoth.pages.dev/api/subdistricts/[รหัสตําบล]
+```
+
+**ดึงข้อมูล ภูมิภาค (Geography) ทั้งหมด**
+
+```text
+https://geoth.pages.dev/api/geographies/all
+```
+
+**ดึงข้อมูล ภูมิภาคพร้อมรายชื่อจังหวัดในภูมิภาคนั้น**
+
+```text
+https://geoth.pages.dev/api/geographies-with-provinces/all
+```
+
+**ดึงข้อมูล ภูมิภาค โดยระบุรหัสภูมิภาค**
+
+```text
+https://geoth.pages.dev/api/geographies/[รหัสภูมิภาค]
+```
+
+**ดึงข้อมูล ภูมิภาคพร้อมรายชื่อจังหวัด โดยระบุรหัสภูมิภาค**
+
+```text
+https://geoth.pages.dev/api/geographies-with-provinces/[รหัสภูมิภาค]
+```
+
+**ตัวอย่างการใช้งานด้วย curl**
+
+```bash
+curl -s https://geoth.pages.dev/api/provinces/all
+```
